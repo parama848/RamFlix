@@ -1,0 +1,909 @@
+@import "tailwindcss";
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+
+  background: #080808;
+
+  color: white;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+/* =========================================================
+   RAMFLIX INTRO
+   ========================================================= */
+
+.ramflix-intro {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #171208 0%,
+      #090704 35%,
+      #000000 72%
+    );
+
+  animation:
+    ramflixIntroExit
+    0.7s
+    ease-in-out
+    2.9s
+    forwards;
+}
+
+
+/* =========================================================
+   BRAND CONTAINER
+   ========================================================= */
+
+.ramflix-brand {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 0 20px;
+}
+
+
+/* =========================================================
+   WORDMARK
+   ========================================================= */
+
+.ramflix-wordmark {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: clamp(130px, 18vw, 200px);
+
+  font-family:
+    "Arial Black",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  font-size: clamp(
+    4rem,
+    10vw,
+    9rem
+  );
+
+  font-weight: 900;
+
+  line-height: 0.85;
+
+  letter-spacing: -0.055em;
+
+  color: #f5b335;
+
+  text-shadow:
+    0 0 8px rgba(245, 179, 53, 0.25),
+    0 0 30px rgba(245, 179, 53, 0.18),
+    0 0 70px rgba(245, 179, 53, 0.08);
+}
+
+
+/* =========================================================
+   CURVED LETTERS
+   ========================================================= */
+
+.ramflix-curve-letter {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transform-origin: center;
+}
+
+
+/*
+   Left side
+*/
+
+.ramflix-curve-letter:nth-child(1) {
+  transform:
+    translateY(52px)
+    rotate(-7deg);
+}
+
+
+/*
+   Left-middle
+*/
+
+.ramflix-curve-letter:nth-child(2) {
+  transform:
+    translateY(25px)
+    rotate(-4deg);
+}
+
+
+/*
+   Center-left
+*/
+
+.ramflix-curve-letter:nth-child(3) {
+  transform:
+    translateY(7px)
+    rotate(-2deg);
+}
+
+
+/*
+   Center
+*/
+
+.ramflix-curve-letter:nth-child(4) {
+  transform:
+    translateY(0)
+    rotate(0deg);
+}
+
+
+/*
+   Center-right
+*/
+
+.ramflix-curve-letter:nth-child(5) {
+  transform:
+    translateY(7px)
+    rotate(2deg);
+}
+
+
+/*
+   Right-middle
+*/
+
+.ramflix-curve-letter:nth-child(6) {
+  transform:
+    translateY(25px)
+    rotate(4deg);
+}
+
+
+/*
+   Right side
+*/
+
+.ramflix-curve-letter:nth-child(7) {
+  transform:
+    translateY(52px)
+    rotate(7deg);
+}
+
+
+/* =========================================================
+   LETTER ANIMATION
+   ========================================================= */
+
+.ramflix-letter-inner {
+  display: inline-block;
+
+  opacity: 0;
+
+  transform:
+    translateY(50px)
+    scale(0.82);
+
+  filter: blur(10px);
+
+  animation:
+    ramflixLetterReveal
+    0.9s
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    calc(
+      0.35s +
+      (var(--curve-index) * 0.08s)
+    )
+    forwards;
+}
+
+
+@keyframes ramflixLetterReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(50px)
+      scale(0.82);
+
+    filter: blur(10px);
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter: blur(0);
+  }
+}
+
+
+/* =========================================================
+   GOLD DECORATIVE LINE
+   ========================================================= */
+
+.ramflix-line {
+  width: 0;
+
+  height: 2px;
+
+  margin-top: 22px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #d99522,
+      #fff0b0,
+      #d99522,
+      transparent
+    );
+
+  box-shadow:
+    0 0 10px rgba(245, 179, 53, 0.7),
+    0 0 30px rgba(245, 179, 53, 0.3);
+
+  animation:
+    ramflixLineReveal
+    1s
+    ease-out
+    0.9s
+    forwards;
+}
+
+
+@keyframes ramflixLineReveal {
+
+  0% {
+    width: 0;
+
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    width: min(
+      420px,
+      55vw
+    );
+
+    opacity: 0.85;
+  }
+}
+
+
+/* =========================================================
+   TAGLINE
+   ========================================================= */
+
+.ramflix-tagline {
+  margin-top: 18px;
+
+  color:
+    rgba(
+      245,
+      179,
+      53,
+      0.7
+    );
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 0.55em;
+
+  opacity: 0;
+
+  transform:
+    translateY(10px);
+
+  animation:
+    ramflixTaglineReveal
+    0.8s
+    ease-out
+    1.25s
+    forwards;
+}
+
+
+@keyframes ramflixTaglineReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(10px);
+
+    letter-spacing: 0.25em;
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    letter-spacing: 0.55em;
+  }
+}
+
+
+/* =========================================================
+   AMBIENT GLOW
+   ========================================================= */
+
+.ramflix-glow {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 500px;
+  height: 500px;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.5);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(
+        245,
+        179,
+        53,
+        0.16
+      ),
+      rgba(
+        245,
+        179,
+        53,
+        0.05
+      ) 35%,
+      transparent 70%
+    );
+
+  filter: blur(25px);
+
+  animation:
+    ramflixGlowReveal
+    3.2s
+    ease-in-out
+    forwards;
+}
+
+
+@keyframes ramflixGlowReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.5);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.35);
+  }
+}
+
+
+/* =========================================================
+   LIGHT SWEEP
+   ========================================================= */
+
+.ramflix-sweep {
+  position: absolute;
+
+  left: -30%;
+
+  top: 50%;
+
+  width: 160%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        255,
+        255,
+        255,
+        0.08
+      ),
+      rgba(
+        245,
+        179,
+        53,
+        0.9
+      ),
+      rgba(
+        255,
+        255,
+        255,
+        0.08
+      ),
+      transparent
+    );
+
+  box-shadow:
+    0 0 20px
+    rgba(
+      245,
+      179,
+      53,
+      0.4
+    );
+
+  transform:
+    translateX(-100%);
+
+  animation:
+    ramflixSweepReveal
+    1.8s
+    cubic-bezier(
+      0.4,
+      0,
+      0.2,
+      1
+    )
+    0.35s
+    forwards;
+}
+
+
+@keyframes ramflixSweepReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-100%);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateX(100%);
+  }
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.ramflix-particles {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+}
+
+
+.ramflix-particles span {
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background: #f5b335;
+
+  box-shadow:
+    0 0 8px
+    rgba(
+      245,
+      179,
+      53,
+      0.8
+    );
+
+  opacity: 0;
+
+  animation:
+    ramflixParticle
+    3s
+    ease-out
+    infinite;
+}
+
+
+/* Particle positions */
+
+.ramflix-particles span:nth-child(1) {
+  left: 15%;
+  top: 35%;
+  animation-delay: 0.2s;
+}
+
+.ramflix-particles span:nth-child(2) {
+  left: 22%;
+  top: 65%;
+  animation-delay: 0.7s;
+}
+
+.ramflix-particles span:nth-child(3) {
+  left: 30%;
+  top: 20%;
+  animation-delay: 1.1s;
+}
+
+.ramflix-particles span:nth-child(4) {
+  left: 38%;
+  top: 75%;
+  animation-delay: 0.4s;
+}
+
+.ramflix-particles span:nth-child(5) {
+  left: 48%;
+  top: 25%;
+  animation-delay: 1.3s;
+}
+
+.ramflix-particles span:nth-child(6) {
+  left: 57%;
+  top: 70%;
+  animation-delay: 0.8s;
+}
+
+.ramflix-particles span:nth-child(7) {
+  left: 66%;
+  top: 28%;
+  animation-delay: 1.6s;
+}
+
+.ramflix-particles span:nth-child(8) {
+  left: 74%;
+  top: 60%;
+  animation-delay: 0.5s;
+}
+
+.ramflix-particles span:nth-child(9) {
+  left: 82%;
+  top: 38%;
+  animation-delay: 1.8s;
+}
+
+.ramflix-particles span:nth-child(10) {
+  left: 90%;
+  top: 70%;
+  animation-delay: 1s;
+}
+
+.ramflix-particles span:nth-child(11) {
+  left: 10%;
+  top: 75%;
+  animation-delay: 1.5s;
+}
+
+.ramflix-particles span:nth-child(12) {
+  left: 88%;
+  top: 25%;
+  animation-delay: 0.9s;
+}
+
+.ramflix-particles span:nth-child(13) {
+  left: 44%;
+  top: 15%;
+  animation-delay: 1.9s;
+}
+
+.ramflix-particles span:nth-child(14) {
+  left: 62%;
+  top: 80%;
+  animation-delay: 0.3s;
+}
+
+
+@keyframes ramflixParticle {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0);
+  }
+
+  25% {
+    opacity: 0.8;
+  }
+
+  75% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-80px)
+      scale(1.5);
+  }
+}
+
+
+/* =========================================================
+   INTRO EXIT
+   ========================================================= */
+
+@keyframes ramflixIntroExit {
+
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .ramflix-wordmark {
+    font-size: 4rem;
+
+    letter-spacing: -0.045em;
+  }
+
+  .ramflix-wordmark {
+    height: 110px;
+  }
+
+  .ramflix-curve-letter:nth-child(1) {
+    transform:
+      translateY(30px)
+      rotate(-5deg);
+  }
+
+  .ramflix-curve-letter:nth-child(2) {
+    transform:
+      translateY(15px)
+      rotate(-3deg);
+  }
+
+  .ramflix-curve-letter:nth-child(3) {
+    transform:
+      translateY(4px)
+      rotate(-1deg);
+  }
+
+  .ramflix-curve-letter:nth-child(4) {
+    transform:
+      translateY(0)
+      rotate(0deg);
+  }
+
+  .ramflix-curve-letter:nth-child(5) {
+    transform:
+      translateY(4px)
+      rotate(1deg);
+  }
+
+  .ramflix-curve-letter:nth-child(6) {
+    transform:
+      translateY(15px)
+      rotate(3deg);
+  }
+
+  .ramflix-curve-letter:nth-child(7) {
+    transform:
+      translateY(30px)
+      rotate(5deg);
+  }
+
+  .ramflix-tagline {
+    font-size: 8px;
+
+    letter-spacing: 0.4em;
+  }
+
+  .ramflix-line {
+    margin-top: 15px;
+  }
+}
+
+
+.ramflix-image-logo {
+  width: min(680px, 68vw);
+  height: auto;
+  display: block;
+  object-fit: contain;
+
+  opacity: 0;
+
+  transform: scale(0.72);
+
+  filter:
+    drop-shadow(0 0 4px rgba(255, 190, 40, 0.45))
+    drop-shadow(0 0 16px rgba(255, 180, 20, 0.25));
+
+  animation:
+    ramflixLogoPop 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards,
+    ramflixLogoGlow 2.2s ease-in-out 1.4s infinite alternate;
+}
+
+
+/* =========================
+   LOGO POP-IN
+========================= */
+
+@keyframes ramflixLogoPop {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.72);
+
+    filter:
+      blur(8px)
+      drop-shadow(0 0 0 transparent);
+  }
+
+  55% {
+    opacity: 1;
+
+    transform:
+      scale(1.06);
+
+    filter:
+      blur(0)
+      drop-shadow(0 0 8px rgba(255, 190, 40, 0.55))
+      drop-shadow(0 0 25px rgba(255, 180, 20, 0.3));
+  }
+
+  75% {
+    transform:
+      scale(0.97);
+  }
+
+  90% {
+    transform:
+      scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+    filter:
+      drop-shadow(0 0 6px rgba(255, 190, 40, 0.45))
+      drop-shadow(0 0 20px rgba(255, 180, 20, 0.25));
+  }
+}
+
+
+/* =========================
+   SUBTLE GOLDEN BREATHING
+========================= */
+
+@keyframes ramflixLogoGlow {
+
+  0% {
+    transform: scale(1);
+
+    filter:
+      drop-shadow(0 0 5px rgba(255, 190, 40, 0.4))
+      drop-shadow(0 0 18px rgba(255, 180, 20, 0.2));
+  }
+
+  100% {
+    transform: scale(1.015);
+
+    filter:
+      drop-shadow(0 0 9px rgba(255, 205, 60, 0.65))
+      drop-shadow(0 0 30px rgba(255, 180, 20, 0.32));
+  }
+}
