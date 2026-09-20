@@ -1,4 +1,4 @@
-package com.Ramflix.dto;
+package com.Ramflix.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.Ramflix.controller;
 
-import com.Ramflix.dto.AuthResponse;
+import com.Ramflix.dto.auth.AuthResponse;
 import com.Ramflix.dto.auth.LoginRequest;
 import com.Ramflix.dto.auth.RegisterRequest;
 import com.Ramflix.service.AuthService;
